@@ -100,9 +100,11 @@ print("centroids",kmeans.cluster_centers_)  # centroids
 plt.scatter(
     X["Annual Income (k$)"],
     X["Spending Score (1-100)"],
-    c=df["cluster"]
+    c=df["cluster"],
+    marker="o"
 )
 plt.xlabel("Annual Income (k$)")
 plt.ylabel("Spending Score (1-100)")
+
 plt.title("Mall Customer Segmentation using K-means")
 plt.show()

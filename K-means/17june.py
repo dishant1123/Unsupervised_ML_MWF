@@ -45,12 +45,51 @@ print("centroids",kmeans.cluster_centers_)
 
 # ex :2 using  dataset : 
 
+"""
 df = pd.read_csv("K-means\Mall_Customers.csv")
 
 X=df[["Annual Income (k$)","Spending Score (1-100)"]]
 
 kmeans = KMeans(n_clusters=5,random_state=42)  
 
+df["cluster"] = kmeans.fit_predict(X)
+
+print(df.head())
+print("centroids",kmeans.cluster_centers_)  # centroids
+
+# graphs  using  scatter plot
+
+plt.scatter(
+    X["Annual Income (k$)"],
+    X["Spending Score (1-100)"],
+    c=df["cluster"]
+)
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.title("Mall Customer Segmentation using K-means")
+plt.show()
+"""
+# using  elbow method
+
+df = pd.read_csv("K-means\Mall_Customers.csv")
+
+X=df[["Annual Income (k$)","Spending Score (1-100)"]]
+
+# elbow method  : 
+"""wcss =[] 
+for i in range(1,11):
+    kmeans = KMeans(n_clusters=i,random_state=42)
+    model =kmeans.fit(X)
+    wcss.append(model.inertia_)
+    
+       
+plt.plot(range(1,11),wcss)
+plt.xlabel("k")
+plt.ylabel("wcss")
+plt.title("Elbow Method")
+plt.show()
+"""
+kmeans = KMeans(n_clusters=4,random_state=42)
 df["cluster"] = kmeans.fit_predict(X)
 
 print(df.head())

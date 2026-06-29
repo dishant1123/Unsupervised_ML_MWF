@@ -68,6 +68,10 @@ import pandas as pd
 from sklearn.cluster import AgglomerativeClustering
 from scipy.cluster.hierarchy import dendrogram, linkage
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# ex :1 
+"""
 data = {
     "student": ['A', 'B', 'C', 'D','E','F'],
     "Maths" : [20 ,22 ,80 ,82 ,25 ,78], 
@@ -123,4 +127,55 @@ plt.xlabel("Maths")
 plt.ylabel("Science")
 plt.grid(True)
 plt.show()
+"""
 
+# ex :2 
+
+# read_csv  dataset   mall_customers  :
+
+df = pd.read_csv("K-means\Mall_Customers.csv")
+print(df.head())
+
+# clean data  :
+print(df.isnull().sum())
+
+# features : 
+x=df[['Annual Income (k$)','Spending Score (1-100)']]
+
+# scale :
+x_scale =   StandardScaler() 
+x_scaled = x_scale.fit_transform(x)
+
+# apply linkage  :
+linkage_matrix = linkage(x_scaled, method='ward')
+print("linkage matrix\n",linkage_matrix)
+
+# draw dendrogram
+
+plt.figure(figsize=(8,5))
+dendrogram(linkage_matrix,labels=df['CustomerID'].values)
+plt.title('Dendrogram')
+plt.xlabel("customers")
+plt.ylabel("distance")
+plt.show()
+
+model = AgglomerativeClustering(n_clusters=4, linkage='ward')
+
+clusters = model.fit_predict(x)
+df['cluster'] = clusters
+print("cluster\n",df)
+
+# plot cluster  : 
+
+plt.scatter(
+    df['Annual Income (k$)'],
+    df['Spending Score (1-100)'],
+    c=df['cluster'],
+    s=150
+)
+ 
+plt.title(' hirearchical clustering ')
+plt.xlabel("Maths")
+plt.ylabel("Science")
+plt.grid(True)
+plt.show()

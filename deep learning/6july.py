@@ -47,7 +47,46 @@ b=  b + n * (y - y^)  = 0 + 0.1 * (1-0)= 0.1
 
 x1 =5   x2 = 8 
 
-=0.5 * 5 + 0.8 * 8 +0.1= 7.2 
+=0.5 * 0.1 + 0.1 * 8 +0= 7.2  ==> 0.05 + 0.8 +0
 
 
 """
+# solving  this  using numpy  : 
+
+import numpy as np
+
+x=np.array([
+    [2,5],
+    [5,8],
+    [3,6],
+    [6,7]
+])
+
+y=np.array([0,0,1,1])
+w=np.array([0.0,0.0]) 
+b=0.0
+lr = 0.1 
+
+print("intial weights : ",w)
+print("initial bias : ",b)
+
+for i in range(len(x)):
+    X = x[i]
+    z=np.dot(X,w) + b
+    
+    y_pred = 1  if z >=0 else 0 
+    
+    print("input : ",X)
+    print("actual output : ",y[i])
+    print("weightd sum : ",z)
+    print("predicted output : ",y_pred)
+    
+    error = y[i] - y_pred
+    print("error : ",error)
+    
+    # weight update  :  
+    w =w + lr * error *X 
+    b=b +lr * error
+    
+    print("updated weights : ",w)
+    print("updated bias : ",b)

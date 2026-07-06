@@ -81,7 +81,7 @@ for i in range(len(x)):
     print("weightd sum : ",z)
     print("predicted output : ",y_pred)
     
-    error = y[i] - y_pred
+    error = y_pred -y[i]
     print("error : ",error)
     
     # weight update  :  

@@ -53,7 +53,7 @@ x1 =5   x2 = 8
 """
 # solving  this  using numpy  : 
 
-import numpy as np
+"""import numpy as np
 
 x=np.array([
     [2,5],
@@ -90,3 +90,84 @@ for i in range(len(x)):
     
     print("updated weights : ",w)
     print("updated bias : ",b)
+"""
+
+# multi layer perceptron : 
+
+import numpy as np
+
+"""
+study      attendance     assignment     pass 
+2            60             4            0 
+3            65             5            0
+5            80             8            1
+6            90             9            1
+
+input  :   st.hrs , atted, assig_score 
+
+hidden layer  :
+    1. hard -working  student 
+    2. regular student
+    3. good assignment performance 
+    
+output : pass / fail 
+
+"""
+x=np.array([5,80,8])    # 5 hrs , 80  attend  8 assign 
+
+# input  ---> hidden weight (3 inputs * 2 hidden  neurons)
+w1 =np.array([
+    [0.2,0.5],
+    [0.3,0.4],
+    [0.6,0.1]
+])
+
+# hidden bias : 
+b1 =np.array([0.5,0.2])
+
+# hidden ---> output  weight (2 hidden * 1 output)
+w2 =np.array([
+    [0.7],
+    [0.8]
+])
+
+# output  bias : 
+
+b2 =np.array([0.1])
+
+hidden_input  = np.dot(x,w1) + b1 
+hidden_output = np.maximum(0,hidden_input)
+
+output = np.dot(hidden_output,w2) + b2
+
+print("hidden layer  input  : ",hidden_input)
+print("hidden layer  output : ",hidden_output)
+print("output : ",output)
+
+"""
+[5,80 ,8]   ===> multiply with w1 
+
+hidden cal : 
+
+neuron :1 
+
+= 5 * 0.2 + 80 * 0.3  + 8 *0.6 +0.5 
+  x1 *w1  + x2 * w2   + x3 * w3  + b 
+  
+neuron :2 
+
+=5 * 0.5 + 80 * 0.4  + 8 *0.1 +0.2 
+
+| 
+
+np.max(0,x)   
+
+| 
+output  
+
+hidden output *w2 +b 
+
+| 
+final output
+
+"""

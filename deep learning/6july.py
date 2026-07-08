@@ -53,7 +53,8 @@ x1 =5   x2 = 8
 """
 # solving  this  using numpy  : 
 
-"""import numpy as np
+"""
+import numpy as np
 
 x=np.array([
     [2,5],
@@ -113,7 +114,7 @@ hidden layer  :
 output : pass / fail 
 
 """
-x=np.array([5,80,8])    # 5 hrs , 80  attend  8 assign 
+"""x=np.array([5,80,8])    # 5 hrs , 80  attend  8 assign 
 
 # input  ---> hidden weight (3 inputs * 2 hidden  neurons)
 w1 =np.array([
@@ -143,7 +144,7 @@ output = np.dot(hidden_output,w2) + b2
 print("hidden layer  input  : ",hidden_input)
 print("hidden layer  output : ",hidden_output)
 print("output : ",output)
-
+"""
 """
 [5,80 ,8]   ===> multiply with w1 
 
@@ -171,3 +172,35 @@ hidden output *w2 +b
 final output
 
 """
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+students = pd.DataFrame({
+    "Hours":[1,2,3,4,5,6,7,8],
+    "Marks":[35,40,50,60,70,78,85,92]
+})
+
+
+x = students["Hours"].values
+
+# Normalize
+x = (x - np.mean(x)) / np.std(x)
+
+sigmoid = 1 / (1 + np.exp(-x))
+tanh = np.tanh(x)
+relu = np.maximum(0, x)
+
+plt.figure(figsize=(8,5))
+plt.plot(x, sigmoid, label="Sigmoid")
+plt.plot(x, tanh, label="Tanh")
+plt.plot(x, relu, label="ReLU")
+plt.title("Activation Functions on Student Hours Dataset")
+plt.xlabel("Normalized Study Hours")
+plt.ylabel("Activation Output")
+plt.legend()
+plt.grid(True)
+plt.show()

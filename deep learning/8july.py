@@ -1,4 +1,4 @@
-import pandas as pd 
+"""import pandas as pd 
 import matplotlib.pyplot as plt 
 import numpy as np
 
@@ -29,3 +29,10 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
+"""
+import tensorflow as tf
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation="relu"),
+    tf.keras.layers.Dense(10, activation="softmax")
+])

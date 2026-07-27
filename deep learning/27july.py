@@ -147,3 +147,4 @@ early  stopping  :
 stopping  training automatically bcz the validation  performance stopping  improvements. 
 helping overfiting  , save  time  . 
 """
+# Predict whether a customer will subscribe to a term deposit. yes or  no 

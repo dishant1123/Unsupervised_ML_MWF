@@ -56,7 +56,7 @@ model =tf.keras.Sequential([
     tf.keras.layers.Dense(
         units=16, 
         activation='relu',
-        input_shape=(X_train.shape[1],)
+        input_shape=(X_train.shape[1],) #first layer must know how many input features for each training sample has
         ),
     tf.keras.layers.Dense(
             units=8, 
@@ -149,3 +149,23 @@ if prediction > 0.5 :
     print("customer will leave")
 else :
     print("customer will not leave")
+    
+    
+"""
+yrsexp  salary 
+
+1       23000
+2       34000
+
+x_train ====> yrs of exp 
+print(x_train.shape) 2,2   ====> 2 row  2 col    ===>2 samples 2 features 
+
+area   bedroom   age  price 
+1000   1         30   10000
+1500   2         25   15000
+
+shape ====> 2,3    ===>2 samples 3 features
+
+input_shape [0]   ====> 2 sample 
+input_shape [1]   ====> 3 features
+"""
